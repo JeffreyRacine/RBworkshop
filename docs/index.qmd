@@ -62,6 +62,8 @@ library(np)
 
 # Slide Pro-Tips {.smaller}
 
+::: {.nonincremental}
+
 - Link to slides: <a href="https://jeffreyracine.github.io/RBworkshop">jeffreyracine.github.io/RBworkshop</a>
  
 - View **full screen** by pressing the F key (Esc to revert)
@@ -75,6 +77,8 @@ library(np)
 - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio 
 
 - **Export to a PDF** by pressing the E key (wait a few seconds, then from the print menu enable landscape layout then save as PDF - press E to revert)
+
+:::
 
 ::: {.notes}
 Encourage participants to print/save a PDF copy of the slides as there is no guarantee that this material will be there when they realize it might be useful.
