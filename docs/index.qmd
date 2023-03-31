@@ -65,19 +65,19 @@ library(np)
 ::: {.nonincremental}
 
 - Link to slides: <a href="https://jeffreyracine.github.io/RBworkshop">jeffreyracine.github.io/RBworkshop</a>
- 
+
 - View **full screen** by pressing the F key (Esc to revert)
 
-- Access **navigation menu** by pressing the M key (X to close)
+- Access **navigation menu** by pressing the M key (X in navigation menu to close)
 
 - **Advance** using arrow keys
 
-- **Zoom** by holding down the Alt key in MS Windows, Option key in macOS or Ctrl key in Linux, and clicking on any element (e.g., a small figure)
+- **Zoom** by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any element (e.g., a small figure - Alt/Opt/Ctrl click again to zoom out)
 
 - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio 
 
 - **Export to a PDF** by pressing the E key (wait a few seconds, then from the print menu enable landscape layout then save as PDF - press E to revert)
-
+ 
 :::
 
 ::: {.notes}
