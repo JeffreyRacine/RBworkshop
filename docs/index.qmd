@@ -64,7 +64,7 @@ library(np)
 
 ::: {.nonincremental}
 
-- Link to slides: <a href="https://jeffreyracine.github.io/RBworkshop">jeffreyracine.github.io/RBworkshop</a>
+- Link to slides - <a href="https://jeffreyracine.github.io/RBworkshop">jeffreyracine.github.io/RBworkshop</a>
 
 - View **full screen** by pressing the F key (Esc to revert)
 
@@ -72,7 +72,7 @@ library(np)
 
 - **Advance** using arrow keys
 
-- **Zoom** by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any element (e.g., a small figure - Alt/Opt/Ctrl click again to zoom out)
+- **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any element (e.g., a small figure - Alt/Opt/Ctrl click again to zoom out)
 
 - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio 
 
