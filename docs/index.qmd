@@ -37,6 +37,9 @@ format:
     ## elsewhere.
     multiplex: true    
     preview-links: auto
+    ## https://github.com/shafayetShafee/reveal-header
+    ## quarto add shafayetShafee/reveal-header 
+    # sc-sb-title: false
     self-contained-math: false
     show-notes: false
     slide-number: true
