@@ -7,21 +7,11 @@ author: Jeffrey S. Racine
 institute: McMaster University
 format:
   revealjs:
-    footer: "Workshop | J. Racine"
-    smaller: false
+    background-transition: fade
+    center: true
     chalkboard: true
     embed-resources: false
-    self-contained-math: false
-    slide-number: true
-    preview-links: auto   
-    incremental: true
-    transition: slide
-    background-transition: fade
-    theme: simple
-    touch: true
-    ## multiplex: presentation.html	This is the file you should publish online and that your audience should view.
-    ## presentation-speaker.html	This is the file that you should present from . This file can remain on your computer and does not need to be published elsewhere.
-    multiplex: true
+    footer: "Workshop | J. Racine"
     ## This "hack" is exclusive to using mathjax and allows for plain vanilla
     ## equation cross referencing using any LaTeX math environment such as
     ## align, equation, split, etc., i.e., \label{eqfoo} and \eqref{eqfoo} (it
@@ -36,7 +26,23 @@ format:
               tags: 'ams'
             }
           };
-          </script>  
+          </script>    
+    incremental: true
+    link-external-newwindow: true
+    ## multiplex: true will create two html files:
+    ## 1. index.html: This is the file you should publish online and that your
+    ## audience should view.
+    ## 2. index-speaker.html: This is the file that you should present from.
+    ## This file can remain on your computer and does not need to be published
+    ## elsewhere.
+    multiplex: true    
+    preview-links: auto
+    self-contained-math: false
+    show-notes: false
+    slide-number: true
+    theme: simple
+    touch: true
+    transition: slide
 editor: source
 bibliography: slides.bib
 link-citations: true

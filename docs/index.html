@@ -474,7 +474,7 @@ Jeffrey S. Racine
 <li class="fragment"><p>¡Vámonos!</p></li>
 </ul>
 </section>
-<section id="welcome-1" class="slide level2">
+<section id="welcome-1" class="slide level2 center">
 <h2>Welcome!</h2>
 <ul>
 <li class="fragment"><p>You will be guided through basic nonparametric kernel methods using R</p></li>
@@ -503,7 +503,7 @@ Jeffrey S. Racine
 <h1>Background <br> Data Types</h1>
 
 </section>
-<section id="r-and-data-types" class="slide level2">
+<section id="r-and-data-types" class="slide level2 center">
 <h2>R and Data Types</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -525,7 +525,7 @@ Jeffrey S. Racine
 <li class="fragment"><p>Pay careful attention to the following example</p></li>
 </ul>
 </section>
-<section id="r-and-data-types-1" class="slide level2 smaller">
+<section id="r-and-data-types-1" class="slide level2 smaller center">
 <h2>R and Data Types</h2>
 <ul>
 <li class="fragment"><p>Below is an example of how we <em>cast</em> our data in R <em>prior</em> to analyzing it</p></li>
@@ -573,7 +573,7 @@ Jeffrey S. Racine
           display:block!important;
       }</style></aside>
 </section>
-<section id="rstudio-r-editor-interface" class="slide level2">
+<section id="rstudio-r-editor-interface" class="slide level2 center">
 <h2>RStudio R Editor Interface</h2>
 
 <img data-src="images/rstudio_rcode.png" class="r-stretch"></section></section>
@@ -582,7 +582,7 @@ Jeffrey S. Racine
 <h1>Background <br> Density Estimation</h1>
 
 </section>
-<section id="parametric-or-nonparametric" class="slide level2 smaller">
+<section id="parametric-or-nonparametric" class="slide level2 smaller center">
 <h2>Parametric or Nonparametric?</h2>
 <p>Suppose we need to estimate the density <span class="math inline">\(f(x)\)</span> of some numeric random variable <span class="math inline">\(X\)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/parnpeval_cd08a24e84a865bb3b7e2e7ed9fef982">
@@ -599,7 +599,7 @@ Jeffrey S. Racine
 
 </div>
 <img data-src="index_files/figure-revealjs/parnpeval-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="parametric-or-nonparametric-1" class="slide level2">
+<section id="parametric-or-nonparametric-1" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>The R function <code>shapiro.test(x)</code> tests for normality</p>
@@ -642,7 +642,7 @@ Jeffrey S. Racine
 </div></li>
 </ul>
 </section>
-<section id="parametric-or-nonparametric-2" class="slide level2">
+<section id="parametric-or-nonparametric-2" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>Now let’s test normality for actual data, <code>eruptions</code></p>
@@ -684,7 +684,7 @@ Jeffrey S. Racine
 </div></li>
 </ul>
 </section>
-<section id="parametric-or-nonparametric-3" class="slide level2">
+<section id="parametric-or-nonparametric-3" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>Actual data (<span class="math inline">\(X_i\)</span>, <span class="math inline">\(i=1,\dots,n\)</span>) is rarely drawn from the simple parametric distributions used in <em>sampling theory</em></p></li>
@@ -694,7 +694,7 @@ Jeffrey S. Racine
 <li class="fragment"><p>But we need to estimate the <em>density of the actual data</em> (i.e., <span class="math inline">\(f(x)\)</span>), not the <em>density of some summary statistic</em> (i.e., <span class="math inline">\(f(\hat\mu)\)</span>)</p></li>
 </ul>
 </section>
-<section id="parametric-or-nonparametric-4" class="slide level2">
+<section id="parametric-or-nonparametric-4" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>Below is a nonparametric density estimate and data <em>rug</em> for the <code>eruptions</code> data (it is bi-modal <em>and</em> asymmetric)</p>
@@ -709,7 +709,7 @@ Jeffrey S. Racine
 </div></li>
 </ul>
 </section>
-<section id="parametric-or-nonparametric-5" class="slide level2">
+<section id="parametric-or-nonparametric-5" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>Below is a nonparametric and <em>normal</em> parametric estimate (recall the normal parametric model has been <em>rejected</em>)</p>
@@ -724,7 +724,7 @@ Jeffrey S. Racine
 </div></li>
 </ul>
 </section>
-<section id="parametric-or-nonparametric-6" class="slide level2">
+<section id="parametric-or-nonparametric-6" class="slide level2 center">
 <h2>Parametric or Nonparametric?</h2>
 <ul>
 <li class="fragment"><p>Here lies the crux of the parametric problem</p></li>
@@ -739,7 +739,7 @@ Jeffrey S. Racine
 <h1>Nonparametric Essentials <br> Numeric Data</h1>
 
 </section>
-<section id="nonparametric-essentials---numeric-data" class="slide level2">
+<section id="nonparametric-essentials---numeric-data" class="slide level2 center">
 <h2>Nonparametric Essentials - Numeric Data</h2>
 <ul>
 <li class="fragment"><p>Parametric methods require the user to make <em>very strong assumptions</em> about the <em>data generating process</em> (DGP)</p></li>
@@ -749,7 +749,7 @@ Jeffrey S. Racine
 <li class="fragment"><p>We give <em>higher</em> weight to observations close to <span class="math inline">\(x\)</span> (i.e., small <span class="math inline">\(Z_i\)</span>) than to those lying further away (i.e., large <span class="math inline">\(Z_i\)</span>)</p></li>
 </ul>
 </section>
-<section id="non-smooth-or-smooth" class="slide level2">
+<section id="non-smooth-or-smooth" class="slide level2 center">
 <h2>Non-Smooth or Smooth?</h2>
 <ul>
 <li class="fragment"><p>Below are non-smooth and smooth nonparametric density estimates for the <em>numeric</em> variable <code>eruptions</code></p>
@@ -764,7 +764,7 @@ Jeffrey S. Racine
 </div></li>
 </ul>
 </section>
-<section id="non-smooth-or-smooth-1" class="slide level2">
+<section id="non-smooth-or-smooth-1" class="slide level2 center">
 <h2>Non-Smooth or Smooth?</h2>
 <ul>
 <li class="fragment"><p>The non-smooth nonparametric histogram density estimator is <span class="math display">\[\begin{equation*}
@@ -790,7 +790,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
           display:block!important;
       }</style></aside>
 </section>
-<section id="smooth-univariate-density-estimation" class="slide level2">
+<section id="smooth-univariate-density-estimation" class="slide level2 center">
 <h2>Smooth Univariate Density Estimation</h2>
 <ul>
 <li class="fragment"><p>Consider a symmetric smooth kernel function that satisfies <span class="math inline">\(K(z)\ge 0\)</span> and <span class="math inline">\(\int_{-\infty}^{\infty}K(z)\,dz=1\)</span></p></li>
@@ -800,7 +800,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <li class="fragment"><p>This estimator is dominant in applied settings, though <em>boundary bias</em> can be an issue (simple corrections exist, see <code>npuniden.boundary()</code> in the <code>np</code> package)</p></li>
 </ul>
 </section>
-<section id="smooth-univariate-density-estimation-1" class="slide level2">
+<section id="smooth-univariate-density-estimation-1" class="slide level2 center">
 <h2>Smooth Univariate Density Estimation</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -824,7 +824,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <li class="fragment"><p>To accomplish this we use <em>data-driven</em> methods for selecting <span class="math inline">\(h\)</span> (e.g., least-squares cross-validation)</p></li>
 </ul>
 </section>
-<section id="smooth-univariate-density-estimation-2" class="slide level2">
+<section id="smooth-univariate-density-estimation-2" class="slide level2 center">
 <h2>Smooth Univariate Density Estimation</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npudenseruptions_41604006ce9a865d7a5ef2dc936d408c">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(np)</span>
@@ -834,7 +834,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 
 </div>
 <img data-src="index_files/figure-revealjs/npudenseruptions-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="smooth-joint-density-estimation" class="slide level2">
+<section id="smooth-joint-density-estimation" class="slide level2 center">
 <h2>Smooth Joint Density Estimation</h2>
 <ul>
 <li class="fragment"><p>So far we have considered univariate densities (<span class="math inline">\(X\in\mathbb{R}^1\)</span>)</p></li>
@@ -843,7 +843,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <li class="fragment"><p>Let <span class="math inline">\(\{X_1,X_2,\dots,X_n\}\)</span> represent <span class="math inline">\(n\)</span> draws of a numeric random vector <span class="math inline">\(X\)</span>, where the <span class="math inline">\(i\)</span>th draw is denoted by <span class="math inline">\(X_i=(X_{i1},X_{i2},\dots,X_{iq})\)</span></p></li>
 </ul>
 </section>
-<section id="smooth-joint-density-estimation-1" class="slide level2">
+<section id="smooth-joint-density-estimation-1" class="slide level2 center">
 <h2>Smooth Joint Density Estimation</h2>
 <ul>
 <li class="fragment"><p>The multivariate kernel density estimator is <span class="math display">\[\begin{equation*}
@@ -853,7 +853,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <li class="fragment"><p>We continue to use data-driven methods (typically cross-validation) for bandwidth selection when <span class="math inline">\(q\ge1\)</span> (optimal bandwidths differ across variables, i.e., <span class="math inline">\(h_1\ne h_2\)</span>, etc.)</p></li>
 </ul>
 </section>
-<section id="smooth-joint-density-estimation-2" class="slide level2">
+<section id="smooth-joint-density-estimation-2" class="slide level2 center">
 <h2>Smooth Joint Density Estimation</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npudenseruptionswaiting_4b0d58fa08b9e8a35542c02ce8241c6f">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(np)</span>
@@ -868,7 +868,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <h1>Nonparametric Essentials <br> Categorical Data</h1>
 
 </section>
-<section id="categorical-variables" class="slide level2">
+<section id="categorical-variables" class="slide level2 center">
 <h2>Categorical Variables</h2>
 <ul>
 <li class="fragment"><p>We considered the density of continuously distributed random variables <span class="math inline">\(X\in\mathbb{R}\)</span>, but we also deal with the probability function of categorical variables <span class="math inline">\(X\in\mathcal{D}\)</span> where <span class="math inline">\(\mathcal{D}\)</span> is a discrete set</p></li>
@@ -876,7 +876,7 @@ f_H(x)=\frac{1}{nh}\sum_{i=1}^n\mathbf{1}(X_i\text{ is in the same bin as }x)
 <li class="fragment"><p>The non-smooth categorical counterpart to the histogram is called the <em>frequency</em> or <em>empirical</em> probability estimator and, like the histogram, has some drawbacks</p></li>
 </ul>
 </section>
-<section id="univariate-probability-estimation" class="slide level2">
+<section id="univariate-probability-estimation" class="slide level2 center">
 <h2>Univariate Probability Estimation</h2>
 <ul>
 <li class="fragment"><p>Let <span class="math inline">\(X\in\mathcal{D}=\{0,1,\dots,c-1\}\)</span> be categorical</p></li>
@@ -887,7 +887,7 @@ p_n(x)&amp;=\frac{\# X_i\text{ equal to }x}{n}\\
 \end{align*}\]</span></p></li>
 </ul>
 </section>
-<section id="univariate-probability-estimation-1" class="slide level2">
+<section id="univariate-probability-estimation-1" class="slide level2 center">
 <h2>Univariate Probability Estimation</h2>
 <ul>
 <li class="fragment"><p>The <em>unordered</em> nonparametric kernel estimator of <span class="math inline">\(p(x)\)</span> is <span class="math display">\[\begin{equation*}
@@ -904,7 +904,7 @@ L(X_i,x,\lambda)=\left\{
 <li class="fragment"><p><span class="math inline">\(\lambda\)</span> is a <em>smoothing parameter</em> (counterpart to <em>bandwidth</em> <span class="math inline">\(h\)</span>)</p></li>
 </ul>
 </section>
-<section id="example---unordered-probability" class="slide level2">
+<section id="example---unordered-probability" class="slide level2 center">
 <h2>Example - Unordered Probability</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npudensfactor_1c04c1cfffea203e712139578dcc48c3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>n <span class="ot">&lt;-</span> <span class="dv">250</span></span>
@@ -916,7 +916,7 @@ L(X_i,x,\lambda)=\left\{
 
 </div>
 <img data-src="index_files/figure-revealjs/npudensfactor-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="univariate-probability-estimation-2" class="slide level2">
+<section id="univariate-probability-estimation-2" class="slide level2 center">
 <h2>Univariate Probability Estimation</h2>
 <ul>
 <li class="fragment"><p>Let <span class="math inline">\(X\in\mathcal{D}=\{0,1,\dots,c-1\}\)</span>, <span class="math inline">\(c\ge 2\)</span>, be <em>ordered</em></p></li>
@@ -928,7 +928,7 @@ l(X_i,x,\lambda)=\frac{\lambda^{d_{xi}}}{\Lambda_i}
 \end{equation*}\]</span></p></li>
 </ul>
 </section>
-<section id="example---ordered-probability" class="slide level2">
+<section id="example---ordered-probability" class="slide level2 center">
 <h2>Example - Ordered Probability</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npudensordered_98e52e67016768fcbed918c04e311320">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>n <span class="ot">&lt;-</span> <span class="dv">250</span></span>
@@ -945,7 +945,7 @@ l(X_i,x,\lambda)=\frac{\lambda^{d_{xi}}}{\Lambda_i}
 <h1>Nonparametric Essentials <br> Mixed Data</h1>
 
 </section>
-<section id="mixed-data-density-estimation" class="slide level2">
+<section id="mixed-data-density-estimation" class="slide level2 center">
 <h2>Mixed Data Density Estimation</h2>
 <ul>
 <li class="fragment"><p>Statisticians know that <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(p(x)\)</span> are both called <em>density</em> functions (the difference lies in their <em>measure</em> - the latter uses <em>counting</em> measure), so we adopt <span class="math inline">\(f(x)\)</span></p></li>
@@ -953,7 +953,7 @@ l(X_i,x,\lambda)=\frac{\lambda^{d_{xi}}}{\Lambda_i}
 <li class="fragment"><p>We would like to model their joint density function <span class="math inline">\(f(x)=f(x^c,x^d)\)</span>, where the superscripts <span class="math inline">\(^c\)</span> and <span class="math inline">\(^d\)</span> denote continuous and discrete data types, respectively, and where <span class="math inline">\(x=(x^c,x^d)\in\mathbb{R}\times\mathcal{D}\)</span></p></li>
 </ul>
 </section>
-<section id="mixed-data-density-estimation-1" class="slide level2">
+<section id="mixed-data-density-estimation-1" class="slide level2 center">
 <h2>Mixed Data Density Estimation</h2>
 <ul>
 <li class="fragment"><p>The kernel estimator of <span class="math inline">\(f(x^c,x^d)\)</span> is <span class="math display">\[\begin{equation*}
@@ -964,7 +964,7 @@ l(X_i,x,\lambda)=\frac{\lambda^{d_{xi}}}{\Lambda_i}
 <li class="fragment"><p>Now let’s consider the <em>general</em> multivariate mixed data density case</p></li>
 </ul>
 </section>
-<section id="mixed-data-density-estimation-2" class="slide level2">
+<section id="mixed-data-density-estimation-2" class="slide level2 center">
 <h2>Mixed Data Density Estimation</h2>
 <ul>
 <li class="fragment"><p>In general multivariate settings, the probability density function <span class="math inline">\(f(x)\)</span> might use some combination of <span class="math inline">\(q\)</span> numeric, <span class="math inline">\(r\)</span> unordered, and <span class="math inline">\(s\)</span> ordered variable types (<span class="math inline">\(x\)</span> and <span class="math inline">\(X_i\)</span> are <span class="math inline">\(q+r+s\)</span>-vectors)</p></li>
@@ -974,7 +974,7 @@ l(X_i,x,\lambda)=\frac{\lambda^{d_{xi}}}{\Lambda_i}
 <li class="fragment"><p>All we are doing here is using the <em>appropriate kernel function</em> for each data type</p></li>
 </ul>
 </section>
-<section id="mixed-data-density-estimation-3" class="slide level2">
+<section id="mixed-data-density-estimation-3" class="slide level2 center">
 <h2>Mixed Data Density Estimation</h2>
 <ul>
 <li class="fragment"><p>Let <span class="math inline">\(\gamma=(h_1,\dots,h_q,\lambda^u_1,\dots,\lambda^u_r,\lambda^o_1,\dots,\lambda^o_s)\)</span></p></li>
@@ -986,7 +986,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 \end{equation*}\]</span></p></li>
 </ul>
 </section>
-<section id="mixed-data-density-estimation-4" class="slide level2">
+<section id="mixed-data-density-estimation-4" class="slide level2 center">
 <h2>Mixed Data Density Estimation</h2>
 <ul>
 <li class="fragment"><p>The key point is that <em>once you cast your data</em>, then the R functions in the <code>np</code> package know <em>exactly</em> what to do</p></li>
@@ -1000,7 +1000,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 <h1>Nonparametric Regression</h1>
 
 </section>
-<section id="nonparametric-regression-1" class="slide level2">
+<section id="nonparametric-regression-1" class="slide level2 center">
 <h2>Nonparametric Regression</h2>
 <ul>
 <li class="fragment"><p>The conditional mean function <span class="math inline">\(g(x):=\mathbb{E}(Y\vert X=x)\)</span> for numeric <span class="math inline">\(Y\in\mathbb{R}\)</span> is <em>defined</em> as <span class="math display">\[\begin{equation}
@@ -1011,7 +1011,7 @@ g(x)=\int y\frac{f(y,x)}{f(x)}\,dy=\frac{m(x)}{f(x)}
 <li class="fragment"><p>We aim to estimate the unknown regression model <span class="math inline">\(y=g(x)+\varepsilon\)</span> without assuming that, e.g., <span class="math inline">\(g(x)=\beta_0+\beta_1x\)</span></p></li>
 </ul>
 </section>
-<section id="nonparametric-regression-2" class="slide level2">
+<section id="nonparametric-regression-2" class="slide level2 center">
 <h2>Nonparametric Regression</h2>
 <ul>
 <li class="fragment"><p>Regression is <em>hard</em> because <span class="math inline">\(f(y,x)\)</span> and <span class="math inline">\(f(x)\)</span> are unknown</p></li>
@@ -1021,7 +1021,7 @@ g(x)=\int y\frac{f(y,x)}{f(x)}\,dy=\frac{m(x)}{f(x)}
 \end{equation}\]</span></p></li>
 </ul>
 </section>
-<section id="nonparametric-regression-3" class="slide level2">
+<section id="nonparametric-regression-3" class="slide level2 center">
 <h2>Nonparametric Regression</h2>
 <ul>
 <li class="fragment"><p>For <span class="math inline">\(X\in\mathbb{R}^1\)</span>, we estimate <span class="math inline">\(g(x)\)</span> by replacing the unknown <span class="math inline">\(f(x)\)</span> in <span class="math inline">\(\eqref{g(x)}\)</span> with <span class="math display">\[\begin{equation*}
@@ -1032,7 +1032,7 @@ g(x)=\int y\frac{f(y,x)}{f(x)}\,dy=\frac{m(x)}{f(x)}
 \end{equation*}\]</span></p></li>
 </ul>
 </section>
-<section id="nonparametric-regression-4" class="slide level2">
+<section id="nonparametric-regression-4" class="slide level2 center">
 <h2>Nonparametric Regression</h2>
 <ul>
 <li class="fragment"><p>Some mathematical simplification of <span class="math inline">\(\hat g(x)\)</span> leads to <span class="math display">\[\begin{equation*}
@@ -1044,7 +1044,7 @@ y=\hat g(x)+\hat\epsilon
 \end{equation}\]</span></p></li>
 </ul>
 </section>
-<section id="simulated-data-illustration" class="slide level2">
+<section id="simulated-data-illustration" class="slide level2 center">
 <h2>Simulated Data Illustration</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npregcos_40ca0c881d89c0dfb42fe6866f3e85b6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(np)</span>
@@ -1062,7 +1062,7 @@ y=\hat g(x)+\hat\epsilon
 
 </div>
 <img data-src="index_files/figure-revealjs/npregcos-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="simulated-data-illustration-ols" class="slide level2 smaller">
+<section id="simulated-data-illustration-ols" class="slide level2 smaller center">
 <h2>Simulated Data Illustration: OLS</h2>
 <p>How does the simple parametric linear model <code>ghat.ols</code> do for this simulated data?</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/cosolssummary_2f6033dc3c0d359af91e2cb59fbd6754">
@@ -1142,7 +1142,7 @@ y=\hat g(x)+\hat\epsilon
 </div>
 </div>
 </section>
-<section id="marginal-effects" class="slide level2">
+<section id="marginal-effects" class="slide level2 center">
 <h2>Marginal Effects</h2>
 <ul>
 <li class="fragment"><p>The univariate <span class="math inline">\(X\)</span> <em>marginal effects function</em> is simply the first partial derivative function, and is defined as <span class="math display">\[\begin{align}
@@ -1154,7 +1154,7 @@ y=\hat g(x)+\hat\epsilon
 <li class="fragment"><p>We construct <span class="math inline">\(\hat\beta(x)\)</span> by replacing <span class="math inline">\(f(x)\)</span>, <span class="math inline">\(m'(x)\)</span>, <span class="math inline">\(m(x)\)</span>, and <span class="math inline">\(f'(x)\)</span> in <span class="math inline">\(\eqref{beta(x)}\)</span> with <span class="math inline">\(\hat f(x)\)</span>, <span class="math inline">\(\hat m'(x)\)</span>, <span class="math inline">\(\hat m(x)\)</span>, and <span class="math inline">\(\hat f'(x)\)</span></p></li>
 </ul>
 </section>
-<section id="marginal-effects-1" class="slide level2">
+<section id="marginal-effects-1" class="slide level2 center">
 <h2>Marginal Effects</h2>
 <ul>
 <li class="fragment"><p>Recall the definitions of the conditional mean and marginal effects functions, <span class="math inline">\(g(x)\)</span> and <span class="math inline">\(\beta(x)\)</span></p></li>
@@ -1163,7 +1163,7 @@ y=\hat g(x)+\hat\epsilon
 <li class="fragment"><p>But this is <em>exactly</em> what is assumed for the popular linear regression model (i.e., <span class="math inline">\(\beta(x)=d y/d x=\beta_1\)</span>, a <em>constant</em>)</p></li>
 </ul>
 </section>
-<section id="example---simulated-marginal-effects" class="slide level2">
+<section id="example---simulated-marginal-effects" class="slide level2 center">
 <h2>Example - Simulated Marginal Effects</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/cosgradient_54d2000d4b384eb8695890b1546d21db">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">plot</span>(ghat,<span class="at">gradients=</span><span class="cn">TRUE</span>,<span class="at">neval=</span><span class="dv">250</span>)</span>
@@ -1173,7 +1173,7 @@ y=\hat g(x)+\hat\epsilon
 
 </div>
 <img data-src="index_files/figure-revealjs/cosgradient-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="mixed-data-marginal-effects" class="slide level2">
+<section id="mixed-data-marginal-effects" class="slide level2 center">
 <h2>Mixed Data Marginal Effects</h2>
 <ul>
 <li class="fragment"><p>Consider a multivariate conditional mean function <span class="math inline">\(g(x)\)</span> where <span class="math inline">\(x\)</span> is composed of <span class="math inline">\(q\)</span> continuous, <span class="math inline">\(r\)</span> unordered, and <span class="math inline">\(s\)</span> ordered predictors</p></li>
@@ -1182,7 +1182,7 @@ y=\hat g(x)+\hat\epsilon
 \end{equation*}\]</span></p></li>
 </ul>
 </section>
-<section id="multivariate-mixed-data-marginal-effects" class="slide level2">
+<section id="multivariate-mixed-data-marginal-effects" class="slide level2 center">
 <h2>Multivariate Mixed-Data Marginal Effects</h2>
 <ul>
 <li class="fragment"><p>If the <span class="math inline">\(j\)</span>th predictor is unordered in <span class="math inline">\(\mathcal{D}=\{a,b,c\}\)</span>, then <span class="math inline">\(\hat\beta_j(x)\)</span> is the difference between <span class="math inline">\(\hat g(x)\)</span> when <span class="math inline">\(x^u_j=b\)</span> versus <span class="math inline">\(\hat g(x)\)</span> when <span class="math inline">\(x^u_j=a\)</span>, and between <span class="math inline">\(\hat g(x)\)</span> evaluated at <span class="math inline">\(x^u_j=c\)</span> versus at <span class="math inline">\(x^u_j=a\)</span> (<span class="math inline">\(a\)</span> is the <em>base</em> category) <span class="math display">\[\begin{equation*}
@@ -1191,7 +1191,7 @@ y=\hat g(x)+\hat\epsilon
 <li class="fragment"><p>If the <span class="math inline">\(j\)</span>th predictor is ordered we have two options, namely, to take differences as in the unordered case, or to take differences between <em>successive</em> elements of the ordered set (i.e., between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> then between <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>)</p></li>
 </ul>
 </section>
-<section id="multivariate-regression" class="slide level2">
+<section id="multivariate-regression" class="slide level2 center">
 <h2>Multivariate Regression</h2>
 <ul>
 <li class="fragment"><p>We use Wooldridge’s <code>wage1</code> data containing numeric and categorical predictors <a href="https://rdrr.io/pkg/np/man/data-wage1.html">(link to wage1 description)</a></p></li>
@@ -1202,7 +1202,7 @@ y=\hat g(x)+\hat\epsilon
 <li class="fragment"><p>For the parametric model it imposes linear structure</p></li>
 </ul>
 </section>
-<section id="multivariate-nonparametric-regression" class="slide level2 smaller">
+<section id="multivariate-nonparametric-regression" class="slide level2 smaller center">
 <h2>Multivariate Nonparametric Regression</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1summary_d6ff4f7e3bd1c79dbc857eae9262a6a2">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(np)</span>
@@ -1226,7 +1226,7 @@ y=\hat g(x)+\hat\epsilon
 <span id="cb9-19"><a href="#cb9-19"></a><span class="do">## No. Unordered Categorical Explanatory Vars.: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="partial-regression-plots" class="slide level2 smaller">
+<section id="partial-regression-plots" class="slide level2 smaller center">
 <h2>Partial Regression Plots</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1plot_f5a9cc6c5b6279a64cbf955cf1971983">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="do">## We run out of graph axis dimensions with &gt; 2 predictors, so it is common to</span></span>
@@ -1238,7 +1238,7 @@ y=\hat g(x)+\hat\epsilon
 
 </div>
 <img data-src="index_files/figure-revealjs/wage1plot-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="marginal-effects-gradient-plots" class="slide level2 smaller">
+<section id="marginal-effects-gradient-plots" class="slide level2 smaller center">
 <h2>Marginal Effects (Gradient) Plots</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1gradientplot_b9441ff4d6839685535d7c21b248efd0">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
@@ -1246,7 +1246,7 @@ y=\hat g(x)+\hat\epsilon
 
 </div>
 <img data-src="index_files/figure-revealjs/wage1gradientplot-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="testing-h_0colonbeta_j0-ols-significance" class="slide level2 smaller">
+<section id="testing-h_0colonbeta_j0-ols-significance" class="slide level2 smaller center">
 <h2>Testing <span class="math inline">\(H_0\colon\beta_j=0\)</span> (OLS Significance)</h2>
 <p>A simple <span class="math inline">\(t\)</span>-test is used to test <span class="math inline">\(H_0\colon \beta_j=0\)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1sigtestols_2b371712bff225ce6326e6bdf1d0d42e">
@@ -1277,7 +1277,7 @@ y=\hat g(x)+\hat\epsilon
 <span id="cb12-25"><a href="#cb12-25"></a><span class="do">## F-statistic: 70.38 on 5 and 520 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="testing-h_0colonbeta_jx0-significance" class="slide level2">
+<section id="testing-h_0colonbeta_jx0-significance" class="slide level2 center">
 <h2>Testing <span class="math inline">\(H_0\colon\beta_j(x)=0\)</span> (Significance)</h2>
 <ul>
 <li class="fragment"><p>The null and alternative hypotheses are <span class="math display">\[\begin{align*}
@@ -1296,7 +1296,7 @@ with + measure}
 <li class="fragment"><p>A bootstrap procedure provides the null distribution</p></li>
 </ul>
 </section>
-<section id="testing-h_0colonbeta_jx0-significance-1" class="slide level2 smaller">
+<section id="testing-h_0colonbeta_jx0-significance-1" class="slide level2 smaller center">
 <h2>Testing <span class="math inline">\(H_0\colon\beta_j(x)=0\)</span> (Significance)</h2>
 <p>A bootstrap <span class="math inline">\(\lambda\)</span>-test is used to test <span class="math inline">\(H_0\colon \beta_j(x)=0\,\forall\, x\)</span> (a.e.)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1sigtestnp_4dd25c88bee0cc79d2f521bc04f32b29">
@@ -1321,7 +1321,7 @@ with + measure}
 <span id="cb13-19"><a href="#cb13-19"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="counterfactuals" class="slide level2">
+<section id="counterfactuals" class="slide level2 center">
 <h2>Counterfactuals</h2>
 <ul>
 <li class="fragment"><p>The R function <code>fitted(...)</code> extracts fitted values for each sample observation</p></li>
@@ -1330,7 +1330,7 @@ with + measure}
 <li class="fragment"><p>Let’s generate a data frame called <code>df</code> containing 1 row to generate the predicted log-wage for single males having median education, job tenure and job experience</p></li>
 </ul>
 </section>
-<section id="counterfactuals-1" class="slide level2">
+<section id="counterfactuals-1" class="slide level2 center">
 <h2>Counterfactuals</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1preddf_893f7bc232bdd30fa5fe04087e1ffee6">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">attach</span>(wage1)</span>
@@ -1358,7 +1358,7 @@ with + measure}
 <h1>Quarto: Technical, Reproducible Documents</h1>
 
 </section>
-<section id="a-sub-optimal-workflow" class="slide level2">
+<section id="a-sub-optimal-workflow" class="slide level2 center">
 <h2>A Sub-Optimal Workflow</h2>
 <ul>
 <li class="fragment"><p>The old way of doing research is to run your analyses using R, then to manually copy figures and tables into a word processor (e.g., MS Word) or typesetter (e.g., TeX)</p></li>
@@ -1368,7 +1368,7 @@ with + measure}
 <li class="fragment"><p>This is a brutally inefficient and error prone process because it requires a go-between (i.e., you!)</p></li>
 </ul>
 </section>
-<section id="a-streamlined-workflow" class="slide level2">
+<section id="a-streamlined-workflow" class="slide level2 center">
 <h2>A Streamlined Workflow</h2>
 <ul>
 <li class="fragment"><p>Quarto places your code and narrative into the same file</p></li>
@@ -1382,7 +1382,7 @@ with + measure}
 <li class="fragment"><p><a href="https://quarto.org">Quarto</a>, <a href="https://github.com">GitHub</a> and <a href="https://rstudio.github.io/renv">renv</a> are supported in <a href="https://posit.co/products/open-source/rstudio/">RStudio</a></p></li>
 </ul>
 </section>
-<section id="rstudio-quarto-editor-interface" class="slide level2">
+<section id="rstudio-quarto-editor-interface" class="slide level2 center">
 <h2>RStudio Quarto Editor Interface</h2>
 
 <img data-src="images/rstudio_quarto.png" class="r-stretch"></section></section>
@@ -1501,7 +1501,7 @@ Racine, Jeffrey S. 2012. <span>“RStudio: A Platform-Independent <span>IDE</spa
         disableLayout: false,
 
         // Vertical centering of slides
-        center: false,
+        center: true,
 
         // Enables touch navigation on devices with touch input
         touch: true,
@@ -1813,6 +1813,20 @@ Racine, Jeffrey S. 2012. <span>“RStudio: A Platform-Independent <span>IDE</spa
           });
         }
       }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+              // target, if specified
+              link.setAttribute("target", "_blank");
+          }
+        }
     });
     </script>
     
