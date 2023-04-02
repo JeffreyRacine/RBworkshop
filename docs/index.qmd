@@ -805,7 +805,7 @@ If `df` had multiple rows we would get a prediction for each row (i.e., a vector
   
 - If code or data is updated, figures and tables are automatically updated in your output document
 
-- Perhaps best of all, your Quarto file can be *rendered* into any imaginable output format
+- Perhaps best of all, your Quarto file can be *rendered* into any imaginable output format seamlessly via <a href="https://pandoc.org">Pandoc</a>
 
 - <a href="https://quarto.org">Quarto</a>, <a href="https://github.com">GitHub</a> and <a href=https://rstudio.github.io/renv>renv</a> are supported in <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>
 
