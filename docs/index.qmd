@@ -85,7 +85,7 @@ library(np)
 
 - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio
 
-- **Export to a PDF** by pressing the E key (wait a few seconds, then from the print menu enable landscape layout then save as PDF - press the E key to revert)
+- **Export to a PDF** by pressing the E key (wait a few seconds, then print [or print using system dialog], enable landscape layout, then save as PDF - press the E key to revert)
 
 - Enable drawing tools - chalk **board** by pressing the B key (B to revert), notes **canvas** by pressing the C key (C to revert), press the Del key to erase, press the D key to **download drawings**
 
