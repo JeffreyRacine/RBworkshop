@@ -8,7 +8,7 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.310">
+  <meta name="generator" content="quarto-1.3.313">
 
   <meta name="author" content="Jeffrey S. Racine">
   <title>Nonparametric Workshop</title>
@@ -995,8 +995,81 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 <li class="fragment"><p>They <em>automatically</em> use the appropriate kernel for the appropriate data type (numeric, factor, ordered)</p></li>
 <li class="fragment"><p>The data-driven bandwidth methods adjust automatically to the data type</p></li>
 <li class="fragment"><p>Methods for inference (confidence intervals, significance testing in regression) do the same</p></li>
+<li class="fragment"><p>Let’s consider a quick example</p></li>
 </ul>
-</section></section>
+</section>
+<section id="example---mixed-data-density" class="slide level2 center">
+<h2>Example - Mixed Data Density</h2>
+<ul>
+<li class="fragment"><p>Consider two variables, one of which is numeric (<code>lwage</code>) and the other of which is ordered (<code>numdep</code>)</p></li>
+<li class="fragment"><p><code>lwage</code> is the logarithm of an individual’s average hourly earnings, and <code>numdep</code> is the individual’s number of dependants <span class="math inline">\(\{0,1,\dots,6\}\)</span></p></li>
+<li class="fragment"><p>The number of observations in each cell is tabulated in <a href="#/example---mixed-data-density">Table&nbsp;1</a>.</p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/tbl-wage1mixedtable_052a36c9e1f077b4349232852ffa9307">
+<div class="cell-output-display">
+<div id="tbl-wage1mixedtable">
+<table>
+<caption>Table&nbsp;1: Counts of the number of dependants present in 526 households.</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">numdep</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">counts</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: right;">99</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div></li>
+<li class="fragment"><p>We estimate the joint density and plot it in <a href="#/fig-wage1mixeddensity">Figure&nbsp;1</a></p></li>
+</ul>
+</section>
+<section id="example---mixed-data-density-1" class="slide level2 center">
+<h2>Example - Mixed Data Density</h2>
+<ul>
+<li class="fragment"><p>Below is the R code to plot the joint density (we use the <code>plot3D</code> package and reformat the data to render this plot)</p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1mixeddensitycode_24fc40ae839c40e45e041cbda21e4f56">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(np)</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(plot3D)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">data</span>(wage1)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>bw <span class="ot">&lt;-</span> <span class="fu">npudensbw</span>(<span class="sc">~</span>lwage<span class="sc">+</span><span class="fu">ordered</span>(numdep),<span class="at">data=</span>wage1)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>numdep.seq <span class="ot">&lt;-</span> <span class="fu">with</span>(wage1,<span class="fu">sort</span>(<span class="fu">unique</span>(numdep)))</span>
+<span id="cb7-6"><a href="#cb7-6"></a>lwage.seq <span class="ot">&lt;-</span> <span class="fu">with</span>(wage1,<span class="fu">seq</span>(<span class="fu">min</span>(lwage),<span class="fu">max</span>(lwage),<span class="at">length=</span><span class="dv">50</span>))</span>
+<span id="cb7-7"><a href="#cb7-7"></a>wage1.eval <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">numdep=</span><span class="fu">ordered</span>(numdep.seq),<span class="at">lwage=</span>lwage.seq)</span>
+<span id="cb7-8"><a href="#cb7-8"></a>fhat <span class="ot">&lt;-</span> <span class="fu">fitted</span>(<span class="fu">npudens</span>(<span class="at">bws=</span>bw,<span class="at">newdata=</span>wage1.eval))</span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="do">## Hack since scatter3D converts ordered 0-6 to numeric 1-7</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="fu">scatter3D</span>(<span class="fu">as.numeric</span>(wage1.eval[,<span class="dv">1</span>])<span class="sc">-</span><span class="dv">1</span>,wage1.eval[,<span class="dv">2</span>],fhat,</span>
+<span id="cb7-11"><a href="#cb7-11"></a>          <span class="at">ylab=</span><span class="st">"Log-Wage"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>          <span class="at">xlab=</span><span class="st">"Number of Dependants"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13"></a>          <span class="at">zlab=</span><span class="st">"Joint Density"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>          <span class="at">ticktype=</span><span class="st">"detailed"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>          <span class="at">angle=</span><span class="dv">15</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>          <span class="at">box=</span><span class="cn">TRUE</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>          <span class="at">type=</span><span class="st">"h"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>          <span class="at">grid=</span><span class="cn">TRUE</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>          <span class="at">col=</span><span class="st">"blue"</span>,</span>
+<span id="cb7-20"><a href="#cb7-20"></a>          <span class="at">colkey=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+</section>
+<section id="example---mixed-data-density-2" class="slide level2 center">
+<h2>Example - Mixed Data Density</h2>
+
+<img data-src="index_files/figure-revealjs/fig-wage1mixeddensity-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;1: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered).</p></section></section>
 <section>
 <section id="nonparametric-regression" class="title-slide slide level1 center">
 <h1>Nonparametric Regression</h1>
@@ -1049,18 +1122,18 @@ y=\hat g(x)+\hat\epsilon
 <section id="simulated-data-illustration" class="slide level2 center">
 <h2>Simulated Data Illustration</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/npregcos_40ca0c881d89c0dfb42fe6866f3e85b6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(np)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n))</span>
-<span id="cb7-5"><a href="#cb7-5"></a>dgp <span class="ot">&lt;-</span> <span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>x)</span>
-<span id="cb7-6"><a href="#cb7-6"></a>y <span class="ot">&lt;-</span> dgp <span class="sc">+</span> <span class="fu">rnorm</span>(n,<span class="at">sd=</span><span class="fl">0.25</span><span class="sc">*</span><span class="fu">sd</span>(dgp))</span>
-<span id="cb7-7"><a href="#cb7-7"></a>ghat <span class="ot">&lt;-</span> <span class="fu">npreg</span>(y<span class="sc">~</span>x)</span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="fu">plot</span>(x,y,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">col=</span><span class="st">"grey"</span>,<span class="at">xlab=</span><span class="st">"X"</span>,<span class="at">ylab=</span><span class="st">"Y"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="fu">lines</span>(x,dgp)</span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="fu">lines</span>(x,<span class="fu">fitted</span>(ghat),<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="fu">abline</span>(ghat.ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x),<span class="at">col=</span><span class="dv">3</span>)</span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="fu">legend</span>(<span class="st">"top"</span>,<span class="fu">c</span>(<span class="st">"DGP"</span>,<span class="st">"Kernel"</span>,<span class="st">"OLS"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">bty=</span><span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(np)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">runif</span>(n))</span>
+<span id="cb8-5"><a href="#cb8-5"></a>dgp <span class="ot">&lt;-</span> <span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>x)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>y <span class="ot">&lt;-</span> dgp <span class="sc">+</span> <span class="fu">rnorm</span>(n,<span class="at">sd=</span><span class="fl">0.25</span><span class="sc">*</span><span class="fu">sd</span>(dgp))</span>
+<span id="cb8-7"><a href="#cb8-7"></a>ghat <span class="ot">&lt;-</span> <span class="fu">npreg</span>(y<span class="sc">~</span>x)</span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="fu">plot</span>(x,y,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">col=</span><span class="st">"grey"</span>,<span class="at">xlab=</span><span class="st">"X"</span>,<span class="at">ylab=</span><span class="st">"Y"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="fu">lines</span>(x,dgp)</span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="fu">lines</span>(x,<span class="fu">fitted</span>(ghat),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="fu">abline</span>(ghat.ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(y<span class="sc">~</span>x),<span class="at">col=</span><span class="dv">3</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="fu">legend</span>(<span class="st">"top"</span>,<span class="fu">c</span>(<span class="st">"DGP"</span>,<span class="st">"Kernel"</span>,<span class="st">"OLS"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">bty=</span><span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/npregcos-1.png" width="960" class="r-stretch quarto-figure-center"></section>
@@ -1168,10 +1241,10 @@ y=\hat g(x)+\hat\epsilon
 <section id="example---simulated-marginal-effects" class="slide level2 center">
 <h2>Example - Simulated Marginal Effects</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/cosgradient_54d2000d4b384eb8695890b1546d21db">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">plot</span>(ghat,<span class="at">gradients=</span><span class="cn">TRUE</span>,<span class="at">neval=</span><span class="dv">250</span>)</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">lines</span>(x,<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>x),<span class="at">col=</span><span class="dv">2</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">coef</span>(ghat.ols)[<span class="dv">2</span>],<span class="at">col=</span><span class="dv">3</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="st">"Kernel ME"</span>,<span class="st">"DGP ME"</span>,<span class="st">"Linear ME"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">bty=</span><span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(ghat,<span class="at">gradients=</span><span class="cn">TRUE</span>,<span class="at">neval=</span><span class="dv">250</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">lines</span>(x,<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>x),<span class="at">col=</span><span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">coef</span>(ghat.ols)[<span class="dv">2</span>],<span class="at">col=</span><span class="dv">3</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>,<span class="fu">c</span>(<span class="st">"Kernel ME"</span>,<span class="st">"DGP ME"</span>,<span class="st">"Linear ME"</span>),<span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">lty=</span><span class="dv">1</span>,<span class="at">bty=</span><span class="st">"n"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/cosgradient-1.png" width="960" class="r-stretch quarto-figure-center"></section>
@@ -1207,44 +1280,44 @@ y=\hat g(x)+\hat\epsilon
 <section id="multivariate-nonparametric-regression" class="slide level2 smaller center">
 <h2>Multivariate Nonparametric Regression</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1summary_d6ff4f7e3bd1c79dbc857eae9262a6a2">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(np)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">data</span>(wage1)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>ghat <span class="ot">&lt;-</span> <span class="fu">npreg</span>(lwage <span class="sc">~</span> female <span class="sc">+</span> married <span class="sc">+</span> educ <span class="sc">+</span> exper <span class="sc">+</span> tenure, <span class="at">data=</span>wage1, <span class="at">regtype=</span><span class="st">"ll"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">summary</span>(ghat)</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="do">## </span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="do">## Regression Data: 526 training points, in 5 variable(s)</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="do">##                     female   married     educ   exper   tenure</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="do">## Bandwidth(s): 3.000167e-09 0.2881056 5.149537 7.18511 28.01292</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="do">## </span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="do">## Kernel Regression Estimator: Local-Linear</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="do">## Bandwidth Type: Fixed</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="do">## Residual standard error: 0.3682305</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="do">## R-squared: 0.5204155</span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="do">## </span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="do">## Continuous Kernel Type: Second-Order Gaussian</span></span>
-<span id="cb9-16"><a href="#cb9-16"></a><span class="do">## No. Continuous Explanatory Vars.: 3</span></span>
-<span id="cb9-17"><a href="#cb9-17"></a><span class="do">## </span></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="do">## Unordered Categorical Kernel Type: Aitchison and Aitken</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a><span class="do">## No. Unordered Categorical Explanatory Vars.: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(np)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">data</span>(wage1)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>ghat <span class="ot">&lt;-</span> <span class="fu">npreg</span>(lwage <span class="sc">~</span> female <span class="sc">+</span> married <span class="sc">+</span> educ <span class="sc">+</span> exper <span class="sc">+</span> tenure, <span class="at">data=</span>wage1, <span class="at">regtype=</span><span class="st">"ll"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="fu">summary</span>(ghat)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="do">## </span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="do">## Regression Data: 526 training points, in 5 variable(s)</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="do">##                     female   married     educ    exper   tenure</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="do">## Bandwidth(s): 1.058363e-07 0.2881137 5.148991 7.185339 28.00628</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="do">## </span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="do">## Kernel Regression Estimator: Local-Linear</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="do">## Bandwidth Type: Fixed</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="do">## Residual standard error: 0.36823</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="do">## R-squared: 0.520417</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="do">## </span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="do">## Continuous Kernel Type: Second-Order Gaussian</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="do">## No. Continuous Explanatory Vars.: 3</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="do">## </span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="do">## Unordered Categorical Kernel Type: Aitchison and Aitken</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="do">## No. Unordered Categorical Explanatory Vars.: 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="partial-regression-plots" class="slide level2 smaller center">
 <h2>Partial Regression Plots</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1plot_f5a9cc6c5b6279a64cbf955cf1971983">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="do">## We run out of graph axis dimensions with &gt; 2 predictors, so it is common to</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="do">## construct partial plots that plot the fitted model versus each predictor</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="do">## separately holding the off-axis predictors at, say, their median value (you</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="do">## can change this - see ?npplot and the argument xq)</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="fu">plot</span>(ghat,<span class="at">plot.errors.method=</span><span class="st">"bootstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="do">## We run out of graph axis dimensions with &gt; 2 predictors, so it is common to</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="do">## construct partial plots that plot the fitted model versus each predictor</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="do">## separately holding the off-axis predictors at, say, their median value (you</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="do">## can change this - see ?npplot and the argument xq)</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="fu">plot</span>(ghat,<span class="at">plot.errors.method=</span><span class="st">"bootstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/wage1plot-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="marginal-effects-gradient-plots" class="slide level2 smaller center">
 <h2>Marginal Effects (Gradient) Plots</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1gradientplot_b9441ff4d6839685535d7c21b248efd0">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">plot</span>(ghat,<span class="at">gradients=</span><span class="cn">TRUE</span>,<span class="at">plot.errors.method=</span><span class="st">"bootstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">plot</span>(ghat,<span class="at">gradients=</span><span class="cn">TRUE</span>,<span class="at">plot.errors.method=</span><span class="st">"bootstrap"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="index_files/figure-revealjs/wage1gradientplot-1.png" width="960" class="r-stretch quarto-figure-center"></section>
@@ -1252,31 +1325,31 @@ y=\hat g(x)+\hat\epsilon
 <h2>Testing <span class="math inline">\(H_0\colon\beta_j=0\)</span> (OLS Significance)</h2>
 <p>A simple <span class="math inline">\(t\)</span>-test is used to test <span class="math inline">\(H_0\colon \beta_j=0\)</span></p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1sigtestols_2b371712bff225ce6326e6bdf1d0d42e">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>ghat.ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> female <span class="sc">+</span> married <span class="sc">+</span> educ <span class="sc">+</span> exper <span class="sc">+</span> tenure, <span class="at">data=</span>wage1)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(ghat.ols)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="do">## </span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="do">## Call:</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="do">## lm(formula = lwage ~ female + married + educ + exper + tenure, </span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="do">##     data = wage1)</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="do">## </span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="do">## Residuals:</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="do">## -1.87254 -0.27256 -0.03779  0.25349  1.23666 </span></span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="do">## </span></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="do">## Coefficients:</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="do">##                    Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="do">## (Intercept)        0.330268   0.106391   3.104  0.00201 ** </span></span>
-<span id="cb12-15"><a href="#cb12-15"></a><span class="do">## femaleMale         0.285530   0.037264   7.662 9.00e-14 ***</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="do">## marriedNotmarried -0.125739   0.039986  -3.145  0.00176 ** </span></span>
-<span id="cb12-17"><a href="#cb12-17"></a><span class="do">## educ               0.083905   0.006973  12.033  &lt; 2e-16 ***</span></span>
-<span id="cb12-18"><a href="#cb12-18"></a><span class="do">## exper              0.003134   0.001682   1.863  0.06300 .  </span></span>
-<span id="cb12-19"><a href="#cb12-19"></a><span class="do">## tenure             0.016867   0.002955   5.707 1.93e-08 ***</span></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="do">## ---</span></span>
-<span id="cb12-21"><a href="#cb12-21"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
-<span id="cb12-22"><a href="#cb12-22"></a><span class="do">## </span></span>
-<span id="cb12-23"><a href="#cb12-23"></a><span class="do">## Residual standard error: 0.4125 on 520 degrees of freedom</span></span>
-<span id="cb12-24"><a href="#cb12-24"></a><span class="do">## Multiple R-squared:  0.4036, Adjusted R-squared:  0.3979 </span></span>
-<span id="cb12-25"><a href="#cb12-25"></a><span class="do">## F-statistic: 70.38 on 5 and 520 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>ghat.ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(lwage <span class="sc">~</span> female <span class="sc">+</span> married <span class="sc">+</span> educ <span class="sc">+</span> exper <span class="sc">+</span> tenure, <span class="at">data=</span>wage1)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">summary</span>(ghat.ols)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="do">## </span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="do">## Call:</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="do">## lm(formula = lwage ~ female + married + educ + exper + tenure, </span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="do">##     data = wage1)</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="do">## </span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="do">## Residuals:</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="do">## -1.87254 -0.27256 -0.03779  0.25349  1.23666 </span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="do">## </span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="do">## Coefficients:</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="do">##                    Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="do">## (Intercept)        0.330268   0.106391   3.104  0.00201 ** </span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="do">## femaleMale         0.285530   0.037264   7.662 9.00e-14 ***</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="do">## marriedNotmarried -0.125739   0.039986  -3.145  0.00176 ** </span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="do">## educ               0.083905   0.006973  12.033  &lt; 2e-16 ***</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="do">## exper              0.003134   0.001682   1.863  0.06300 .  </span></span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="do">## tenure             0.016867   0.002955   5.707 1.93e-08 ***</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="do">## ---</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a><span class="do">## </span></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="do">## Residual standard error: 0.4125 on 520 degrees of freedom</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="do">## Multiple R-squared:  0.4036, Adjusted R-squared:  0.3979 </span></span>
+<span id="cb13-25"><a href="#cb13-25"></a><span class="do">## F-statistic: 70.38 on 5 and 520 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="testing-h_0colonbeta_jx0-significance" class="slide level2 center">
@@ -1302,25 +1375,25 @@ with + measure}
 <h2>Testing <span class="math inline">\(H_0\colon\beta_j(x)=0\)</span> (Significance)</h2>
 <p>A bootstrap <span class="math inline">\(\lambda\)</span>-test is used to test <span class="math inline">\(H_0\colon \beta_j(x)=0\,\forall\, x\)</span> (a.e.)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1sigtestnp_4dd25c88bee0cc79d2f521bc04f32b29">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">npsigtest</span>(ghat)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="do">## </span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="do">## Kernel Regression Significance Test</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="do">## Type I Test with IID Bootstrap (399 replications, Pivot = TRUE, joint = FALSE)</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="do">## Explanatory variables tested for significance:</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="do">## female (1), married (2), educ (3), exper (4), tenure (5)</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="do">## </span></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="do">##                     female   married     educ   exper   tenure</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="do">## Bandwidth(s): 3.000167e-09 0.2881056 5.149537 7.18511 28.01292</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="do">## </span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="do">## Individual Significance Tests</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="do">## P Value: </span></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="do">## female  &lt; 2.22e-16 *** </span></span>
-<span id="cb13-14"><a href="#cb13-14"></a><span class="do">## married 0.0050125 ** </span></span>
-<span id="cb13-15"><a href="#cb13-15"></a><span class="do">## educ    &lt; 2.22e-16 *** </span></span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="do">## exper   &lt; 2.22e-16 *** </span></span>
-<span id="cb13-17"><a href="#cb13-17"></a><span class="do">## tenure  &lt; 2.22e-16 ***</span></span>
-<span id="cb13-18"><a href="#cb13-18"></a><span class="do">## ---</span></span>
-<span id="cb13-19"><a href="#cb13-19"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">npsigtest</span>(ghat)</span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="do">## </span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="do">## Kernel Regression Significance Test</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="do">## Type I Test with IID Bootstrap (399 replications, Pivot = TRUE, joint = FALSE)</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="do">## Explanatory variables tested for significance:</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="do">## female (1), married (2), educ (3), exper (4), tenure (5)</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="do">## </span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="do">##                     female   married     educ    exper   tenure</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="do">## Bandwidth(s): 1.058363e-07 0.2881137 5.148991 7.185339 28.00628</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="do">## </span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="do">## Individual Significance Tests</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="do">## P Value: </span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="do">## female  &lt; 2.22e-16 *** </span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="do">## married 0.0050125 ** </span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="do">## educ    &lt; 2.22e-16 *** </span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="do">## exper   &lt; 2.22e-16 *** </span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="do">## tenure  &lt; 2.22e-16 ***</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a><span class="do">## ---</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a><span class="do">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="counterfactuals" class="slide level2 center">
@@ -1335,23 +1408,23 @@ with + measure}
 <section id="counterfactuals-1" class="slide level2 center">
 <h2>Counterfactuals</h2>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1preddf_893f7bc232bdd30fa5fe04087e1ffee6">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">attach</span>(wage1)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">female =</span> <span class="fu">factor</span>(<span class="st">"Male"</span>, <span class="at">levels=</span><span class="fu">levels</span>(female)),</span>
-<span id="cb14-3"><a href="#cb14-3"></a>                 <span class="at">married =</span> <span class="fu">factor</span>(<span class="st">"Notmarried"</span>, <span class="at">levels=</span><span class="fu">levels</span>(married)),</span>
-<span id="cb14-4"><a href="#cb14-4"></a>                 <span class="at">educ =</span> <span class="fu">median</span>(educ),</span>
-<span id="cb14-5"><a href="#cb14-5"></a>                 <span class="at">tenure =</span> <span class="fu">median</span>(tenure),</span>
-<span id="cb14-6"><a href="#cb14-6"></a>                 <span class="at">exper =</span> <span class="fu">median</span>(exper))</span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="fu">head</span>(df)</span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="do">##   female    married educ tenure exper</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="do">## 1   Male Notmarried   12      2  13.5</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="fu">predict</span>(ghat, <span class="at">newdata=</span>df)</span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="do">## [1] 1.699071</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="do">## Or you could use ghat &lt;- npreg(...,newdata=df) and fitted(ghat) </span></span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="do">## ghat &lt;- npreg(lwage ~ female + married + educ + exper + tenure, </span></span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="do">##               data=wage1,</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a><span class="do">##               regtype="ll", </span></span>
-<span id="cb14-16"><a href="#cb14-16"></a><span class="do">##               newdata=df)</span></span>
-<span id="cb14-17"><a href="#cb14-17"></a><span class="do">## fitted(ghat)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">attach</span>(wage1)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">female =</span> <span class="fu">factor</span>(<span class="st">"Male"</span>, <span class="at">levels=</span><span class="fu">levels</span>(female)),</span>
+<span id="cb15-3"><a href="#cb15-3"></a>                 <span class="at">married =</span> <span class="fu">factor</span>(<span class="st">"Notmarried"</span>, <span class="at">levels=</span><span class="fu">levels</span>(married)),</span>
+<span id="cb15-4"><a href="#cb15-4"></a>                 <span class="at">educ =</span> <span class="fu">median</span>(educ),</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                 <span class="at">tenure =</span> <span class="fu">median</span>(tenure),</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                 <span class="at">exper =</span> <span class="fu">median</span>(exper))</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="fu">head</span>(df)</span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="do">##   female    married educ tenure exper</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="do">## 1   Male Notmarried   12      2  13.5</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="fu">predict</span>(ghat, <span class="at">newdata=</span>df)</span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="do">## [1] 1.699066</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="do">## Or you could use ghat &lt;- npreg(...,newdata=df) and fitted(ghat) </span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="do">## ghat &lt;- npreg(lwage ~ female + married + educ + exper + tenure, </span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="do">##               data=wage1,</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="do">##               regtype="ll", </span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="do">##               newdata=df)</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a><span class="do">## fitted(ghat)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If <code>df</code> had multiple rows we would get a prediction for each row (i.e., a vector of predictions)</p>
 </section></section>
@@ -1453,7 +1526,7 @@ Racine, Jeffrey S. 2012. <span>“RStudio: A Platform-Independent <span>IDE</spa
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"7341092fc9773418","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"6a2cc9ae8d6d7819","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner

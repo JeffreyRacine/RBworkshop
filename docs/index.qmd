@@ -532,6 +532,85 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 
 - Methods for inference (confidence intervals, significance testing in regression) do the same
 
+- Let's consider a quick example
+
+## Example - Mixed Data Density
+
+- Consider two variables, one of which is numeric (`lwage`) and the other of which is ordered (`numdep`)
+
+- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is the individual's number of dependants $\{0,1,\dots,6\}$
+
+- The number of observations in each cell is tabulated in @tbl-wage1mixedtable.
+
+  ```{r wage1mixedtable}
+  #| label: tbl-wage1mixedtable
+  #| tbl-cap: Counts of the number of dependants present in 526 households.
+  library(np)
+  library(plot3D)
+  data(wage1)
+  knitr::kable(with(wage1,t(data.frame(numdep=sort(unique(numdep)),counts=as.numeric(table(numdep))))),
+               booktabs=TRUE,
+               linesep="")
+  ```
+  
+- We estimate the joint density and plot it in @fig-wage1mixeddensity
+
+## Example - Mixed Data Density
+
+- Below is the R code to plot the joint density (we use the `plot3D` package and reformat the data to render this plot)
+
+  ```{r wage1mixeddensitycode}
+  #| echo: true
+  #| eval: false
+  library(np)
+  library(plot3D)
+  data(wage1)
+  bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
+  numdep.seq <- with(wage1,sort(unique(numdep)))
+  lwage.seq <- with(wage1,seq(min(lwage),max(lwage),length=50))
+  wage1.eval <- expand.grid(numdep=ordered(numdep.seq),lwage=lwage.seq)
+  fhat <- fitted(npudens(bws=bw,newdata=wage1.eval))
+  ## Hack since scatter3D converts ordered 0-6 to numeric 1-7
+  scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
+            ylab="Log-Wage",
+            xlab="Number of Dependants",
+            zlab="Joint Density",
+            ticktype="detailed",
+            angle=15,
+            box=TRUE,
+            type="h",
+            grid=TRUE,
+            col="blue",
+            colkey=FALSE)
+  ```
+
+## Example - Mixed Data Density
+
+```{r wage1mixeddensity}
+#| label: fig-wage1mixeddensity
+#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered).
+## Log-Wages and Number of Dependants.
+data(wage1)
+bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
+numdep.seq <- with(wage1,sort(unique(numdep)))
+lwage.seq <- with(wage1,seq(min(lwage),max(lwage),length=50))
+wage1.eval <- expand.grid(numdep=ordered(numdep.seq),lwage=lwage.seq)
+fhat <- fitted(npudens(bws=bw,newdata=wage1.eval))
+## Hack since scatter3D converts ordered 0-6 to numeric 1-7
+scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
+          ylab="Log-Wage",
+          xlab="Number of Dependants",
+          zlab="Joint Density",
+          ticktype="detailed",
+          angle=15,
+          box=TRUE,
+          type="h",
+          grid=TRUE,
+          col="blue",
+          colkey=FALSE)
+```
+
+
 # Nonparametric Regression
 
 ## Nonparametric Regression
