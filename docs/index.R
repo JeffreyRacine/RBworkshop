@@ -106,7 +106,7 @@ plot(phat,plot.errors.method="bootstrap")
 
 
 #| label: tbl-wage1mixedtable
-#| tbl-cap: Counts of the number of dependants present in 526 households.
+#| tbl-cap: Counts of the number of dependants present in 526 households by cell
 library(np)
 library(plot3D)
 data(wage1)

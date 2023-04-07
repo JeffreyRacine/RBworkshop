@@ -536,15 +536,15 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 
 ## Example - Mixed Data Density
 
-- Consider two variables, one of which is numeric (`lwage`) and the other of which is ordered (`numdep`)
+- We use Wooldridge's `wage1` data and consider two variables, one numeric (`lwage`) and one ordered (`numdep`)
 
-- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is the individual's number of dependants $\{0,1,\dots,6\}$
+- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is their number of dependants $\{0,1,\dots,6\}$
 
-- The number of observations in each cell is tabulated in @tbl-wage1mixedtable.
+- The number of observations in each *cell* is tabulated in @tbl-wage1mixedtable.
 
   ```{r wage1mixedtable}
   #| label: tbl-wage1mixedtable
-  #| tbl-cap: Counts of the number of dependants present in 526 households.
+  #| tbl-cap: Counts of the number of dependants present in 526 households by cell
   library(np)
   library(plot3D)
   data(wage1)
@@ -553,7 +553,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
                linesep="")
   ```
   
-- We estimate the joint density and plot it in @fig-wage1mixeddensity
+- We estimate the joint density $\hat f(lwage,numdep)$ and plot it in @fig-wage1mixeddensity
 
 ## Example - Mixed Data Density
 

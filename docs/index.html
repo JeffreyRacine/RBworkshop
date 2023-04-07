@@ -1001,14 +1001,14 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 <section id="example---mixed-data-density" class="slide level2 center">
 <h2>Example - Mixed Data Density</h2>
 <ul>
-<li class="fragment"><p>Consider two variables, one of which is numeric (<code>lwage</code>) and the other of which is ordered (<code>numdep</code>)</p></li>
-<li class="fragment"><p><code>lwage</code> is the logarithm of an individual’s average hourly earnings, and <code>numdep</code> is the individual’s number of dependants <span class="math inline">\(\{0,1,\dots,6\}\)</span></p></li>
-<li class="fragment"><p>The number of observations in each cell is tabulated in <a href="#/example---mixed-data-density">Table&nbsp;1</a>.</p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/tbl-wage1mixedtable_052a36c9e1f077b4349232852ffa9307">
+<li class="fragment"><p>We use Wooldridge’s <code>wage1</code> data and consider two variables, one numeric (<code>lwage</code>) and one ordered (<code>numdep</code>)</p></li>
+<li class="fragment"><p><code>lwage</code> is the logarithm of an individual’s average hourly earnings, and <code>numdep</code> is their number of dependants <span class="math inline">\(\{0,1,\dots,6\}\)</span></p></li>
+<li class="fragment"><p>The number of observations in each <em>cell</em> is tabulated in <a href="#/example---mixed-data-density">Table&nbsp;1</a>.</p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/tbl-wage1mixedtable_4d103e57a6a671fa9e4a557c721e21e7">
 <div class="cell-output-display">
 <div id="tbl-wage1mixedtable">
 <table>
-<caption>Table&nbsp;1: Counts of the number of dependants present in 526 households.</caption>
+<caption>Table&nbsp;1: Counts of the number of dependants present in 526 households by cell</caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">numdep</td>
@@ -1035,7 +1035,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 </div>
 </div>
 </div></li>
-<li class="fragment"><p>We estimate the joint density and plot it in <a href="#/fig-wage1mixeddensity">Figure&nbsp;1</a></p></li>
+<li class="fragment"><p>We estimate the joint density <span class="math inline">\(\hat f(lwage,numdep)\)</span> and plot it in <a href="#/fig-wage1mixeddensity">Figure&nbsp;1</a></p></li>
 </ul>
 </section>
 <section id="example---mixed-data-density-1" class="slide level2 center">
@@ -1286,13 +1286,13 @@ y=\hat g(x)+\hat\epsilon
 <span id="cb10-4"><a href="#cb10-4"></a><span class="fu">summary</span>(ghat)</span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="do">## </span></span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="do">## Regression Data: 526 training points, in 5 variable(s)</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="do">##                     female   married     educ    exper   tenure</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="do">## Bandwidth(s): 1.058363e-07 0.2881137 5.148991 7.185339 28.00628</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="do">##                     female   married   educ    exper  tenure</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="do">## Bandwidth(s): 7.625617e-08 0.2881125 5.1492 7.185159 28.0086</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a><span class="do">## </span></span>
 <span id="cb10-10"><a href="#cb10-10"></a><span class="do">## Kernel Regression Estimator: Local-Linear</span></span>
 <span id="cb10-11"><a href="#cb10-11"></a><span class="do">## Bandwidth Type: Fixed</span></span>
 <span id="cb10-12"><a href="#cb10-12"></a><span class="do">## Residual standard error: 0.36823</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="do">## R-squared: 0.520417</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="do">## R-squared: 0.5204169</span></span>
 <span id="cb10-14"><a href="#cb10-14"></a><span class="do">## </span></span>
 <span id="cb10-15"><a href="#cb10-15"></a><span class="do">## Continuous Kernel Type: Second-Order Gaussian</span></span>
 <span id="cb10-16"><a href="#cb10-16"></a><span class="do">## No. Continuous Explanatory Vars.: 3</span></span>
@@ -1382,8 +1382,8 @@ with + measure}
 <span id="cb14-5"><a href="#cb14-5"></a><span class="do">## Explanatory variables tested for significance:</span></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="do">## female (1), married (2), educ (3), exper (4), tenure (5)</span></span>
 <span id="cb14-7"><a href="#cb14-7"></a><span class="do">## </span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="do">##                     female   married     educ    exper   tenure</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="do">## Bandwidth(s): 1.058363e-07 0.2881137 5.148991 7.185339 28.00628</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="do">##                     female   married   educ    exper  tenure</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="do">## Bandwidth(s): 7.625617e-08 0.2881125 5.1492 7.185159 28.0086</span></span>
 <span id="cb14-10"><a href="#cb14-10"></a><span class="do">## </span></span>
 <span id="cb14-11"><a href="#cb14-11"></a><span class="do">## Individual Significance Tests</span></span>
 <span id="cb14-12"><a href="#cb14-12"></a><span class="do">## P Value: </span></span>
@@ -1418,7 +1418,7 @@ with + measure}
 <span id="cb15-8"><a href="#cb15-8"></a><span class="do">##   female    married educ tenure exper</span></span>
 <span id="cb15-9"><a href="#cb15-9"></a><span class="do">## 1   Male Notmarried   12      2  13.5</span></span>
 <span id="cb15-10"><a href="#cb15-10"></a><span class="fu">predict</span>(ghat, <span class="at">newdata=</span>df)</span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="do">## [1] 1.699066</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="do">## [1] 1.69907</span></span>
 <span id="cb15-12"><a href="#cb15-12"></a><span class="do">## Or you could use ghat &lt;- npreg(...,newdata=df) and fitted(ghat) </span></span>
 <span id="cb15-13"><a href="#cb15-13"></a><span class="do">## ghat &lt;- npreg(lwage ~ female + married + educ + exper + tenure, </span></span>
 <span id="cb15-14"><a href="#cb15-14"></a><span class="do">##               data=wage1,</span></span>
