@@ -10,6 +10,7 @@ format:
     background-transition: fade
     center: true
     chalkboard: true
+    css: custom.css
     embed-resources: false
     footer: "Workshop | J. Racine"
     ## This "hack" is exclusive to using mathjax and allows for plain vanilla
@@ -35,15 +36,15 @@ format:
     ## 2. index-speaker.html: This is the file that you should present from.
     ## This file can remain on your computer and does not need to be published
     ## elsewhere.
-    multiplex: true    
+    multiplex: true
     preview-links: auto
     ## https://github.com/shafayetShafee/reveal-header
     ## quarto add shafayetShafee/reveal-header 
     # sc-sb-title: false
-    self-contained-math: false
+    self-contained-math: true
     show-notes: false
     slide-number: true
-    theme: simple
+    theme: default
     touch: true
     transition: slide
 editor: source
@@ -77,11 +78,11 @@ library(np)
 
 - View **full screen** by pressing the F key (press the Esc key to revert)
 
-- Access **navigation menu** by pressing the M key (click X in navigation menu to close)
+- Access **navigation menu** by pressing the M key (navigation menu X to close)
 
 - **Advance** using arrow keys
 
-- **Zoom** in by holding down the Alt key in MS Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
+- **Zoom** in by holding down the Alt key in Windows, Opt key in macOS or Ctrl key in Linux, and clicking on any screen element (Alt/Opt/Ctrl click again to zoom out)
 
 - Use **copy to clipboard** button for R code blocks (upper right in block) to copy and paste into R/RStudio
 
@@ -289,7 +290,7 @@ plot(x,dnorm(x,mean=mean(x),sd=sd(x)),type="l",ylab="Parametric Density Estimate
   
 # Nonparametric Essentials <br> Numeric Data
   
-## Nonparametric Essentials - Numeric Data
+## Numeric Data
 
 - Parametric methods require the user to make *very strong assumptions* about the *data generating process* (DGP) 
 
@@ -376,9 +377,9 @@ plot(fhat,neval=250,plot.errors.method="bootstrap")
 ## Smooth Joint Density Estimation
 
 - The multivariate kernel density estimator is
-  \begin{equation*}
-  \hat f(x)=\frac{1}{nh_1\dots h_q}\sum_{i=1}^n K\left(\frac{x_1-X_{i1}}{h_1},\dots,\frac{x_q-X_{iq}}{h_q}\right)
-  \end{equation*}
+\begin{equation*}
+\hat f(x)=\frac{1}{nh_1\dots h_q}\sum_{i=1}^n K\left(\frac{x_1-X_{i1}}{h_1},\dots,\frac{x_q-X_{iq}}{h_q}\right)
+\end{equation*}
   
 - $K(\cdot)$ is a *multivariate* kernel (typically the *product* of univariate kernels - we have lots of flexibility here)
   
