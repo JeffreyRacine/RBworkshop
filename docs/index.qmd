@@ -538,13 +538,13 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 
 - We use Wooldridge's `wage1` data and consider two variables, one numeric (`lwage`) and one ordered (`numdep`)
 
-- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is their number of dependants $\{0,1,\dots,6\}$
+- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is their number of dependents $\{0,1,\dots,6\}$
 
-- The number of observations in each *cell* is tabulated in @tbl-wage1mixedtable.
+- The number of observations in each *cell* is tabulated in @tbl-wage1mixedtable
 
   ```{r wage1mixedtable}
   #| label: tbl-wage1mixedtable
-  #| tbl-cap: Counts of the number of dependants present in 526 households by cell
+  #| tbl-cap: Counts of number of dependants present in 526 households by cell
   library(np)
   library(plot3D)
   data(wage1)
@@ -553,11 +553,11 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
                linesep="")
   ```
   
-- We estimate the joint density $\hat f(lwage,numdep)$ and plot it in @fig-wage1mixeddensity
+- We estimate $\hat f(lwage,numdep)$ and plot it in @fig-wage1mixeddensity
 
 ## Example - Mixed Data Density
 
-- Below is the R code to plot the joint density (we use the `plot3D` package and reformat the data to render this plot)
+- Below is the R code to estimate and plot the joint density (we use the `plot3D` package and reformat the data to render this plot)
 
   ```{r wage1mixeddensitycode}
   #| echo: true
@@ -588,8 +588,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 
 ```{r wage1mixeddensity}
 #| label: fig-wage1mixeddensity
-#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered).
-## Log-Wages and Number of Dependants.
+#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered)
 data(wage1)
 bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
 numdep.seq <- with(wage1,sort(unique(numdep)))

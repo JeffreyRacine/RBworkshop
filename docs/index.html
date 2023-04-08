@@ -1002,13 +1002,13 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 <h2>Example - Mixed Data Density</h2>
 <ul>
 <li class="fragment"><p>We use Wooldridge’s <code>wage1</code> data and consider two variables, one numeric (<code>lwage</code>) and one ordered (<code>numdep</code>)</p></li>
-<li class="fragment"><p><code>lwage</code> is the logarithm of an individual’s average hourly earnings, and <code>numdep</code> is their number of dependants <span class="math inline">\(\{0,1,\dots,6\}\)</span></p></li>
-<li class="fragment"><p>The number of observations in each <em>cell</em> is tabulated in <a href="#/example---mixed-data-density">Table&nbsp;1</a>.</p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/tbl-wage1mixedtable_4d103e57a6a671fa9e4a557c721e21e7">
+<li class="fragment"><p><code>lwage</code> is the logarithm of an individual’s average hourly earnings, and <code>numdep</code> is their number of dependents <span class="math inline">\(\{0,1,\dots,6\}\)</span></p></li>
+<li class="fragment"><p>The number of observations in each <em>cell</em> is tabulated in <a href="#/example---mixed-data-density">Table&nbsp;1</a></p>
+<div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/tbl-wage1mixedtable_684c1cc91e7e28e0a4be2baaa4c1333b">
 <div class="cell-output-display">
 <div id="tbl-wage1mixedtable">
 <table>
-<caption>Table&nbsp;1: Counts of the number of dependants present in 526 households by cell</caption>
+<caption>Table&nbsp;1: Counts of number of dependants present in 526 households by cell</caption>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">numdep</td>
@@ -1035,13 +1035,13 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 </div>
 </div>
 </div></li>
-<li class="fragment"><p>We estimate the joint density <span class="math inline">\(\hat f(lwage,numdep)\)</span> and plot it in <a href="#/fig-wage1mixeddensity">Figure&nbsp;1</a></p></li>
+<li class="fragment"><p>We estimate <span class="math inline">\(\hat f(lwage,numdep)\)</span> and plot it in <a href="#/fig-wage1mixeddensity">Figure&nbsp;1</a></p></li>
 </ul>
 </section>
 <section id="example---mixed-data-density-1" class="slide level2 center">
 <h2>Example - Mixed Data Density</h2>
 <ul>
-<li class="fragment"><p>Below is the R code to plot the joint density (we use the <code>plot3D</code> package and reformat the data to render this plot)</p>
+<li class="fragment"><p>Below is the R code to estimate and plot the joint density (we use the <code>plot3D</code> package and reformat the data to render this plot)</p>
 <div class="cell" data-layout-align="center" data-hash="index_cache/revealjs/wage1mixeddensitycode_24fc40ae839c40e45e041cbda21e4f56">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(np)</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="fu">library</span>(plot3D)</span>
@@ -1069,7 +1069,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 <section id="example---mixed-data-density-2" class="slide level2 center">
 <h2>Example - Mixed Data Density</h2>
 
-<img data-src="index_files/figure-revealjs/fig-wage1mixeddensity-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;1: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered).</p></section></section>
+<img data-src="index_files/figure-revealjs/fig-wage1mixeddensity-1.png" width="960" class="r-stretch quarto-figure-center"><p class="caption">Figure&nbsp;1: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered)</p></section></section>
 <section>
 <section id="nonparametric-regression" class="title-slide slide level1 center">
 <h1>Nonparametric Regression</h1>

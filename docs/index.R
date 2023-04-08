@@ -106,7 +106,7 @@ plot(phat,plot.errors.method="bootstrap")
 
 
 #| label: tbl-wage1mixedtable
-#| tbl-cap: Counts of the number of dependants present in 526 households by cell
+#| tbl-cap: Counts of number of dependants present in 526 households by cell
 library(np)
 library(plot3D)
 data(wage1)
@@ -140,8 +140,7 @@ knitr::kable(with(wage1,t(data.frame(numdep=sort(unique(numdep)),counts=as.numer
 
 
 #| label: fig-wage1mixeddensity
-#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered).
-## Log-Wages and Number of Dependants.
+#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered)
 data(wage1)
 bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
 numdep.seq <- with(wage1,sort(unique(numdep)))
