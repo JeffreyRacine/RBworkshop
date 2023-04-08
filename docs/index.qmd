@@ -886,7 +886,7 @@ If `df` had multiple rows we would get a prediction for each row (i.e., a vector
 
 - Perhaps best of all, your Quarto file can be *rendered* into any imaginable output format seamlessly via <a href="https://pandoc.org">Pandoc</a>
 
-- <a href="https://quarto.org">Quarto</a>, <a href="https://github.com">GitHub</a> and <a href=https://rstudio.github.io/renv>renv</a> are supported in <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>
+- (<a href="https://quarto.org">Quarto</a>, <a href="https://github.com">GitHub</a> and <a href=https://rstudio.github.io/renv>renv</a> are all supported in <a href="https://posit.co/products/open-source/rstudio/">RStudio</a>)
 
 ## RStudio Quarto Editor Interface
   
