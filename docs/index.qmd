@@ -538,7 +538,7 @@ K_\gamma(X_i,x)=\prod_{j=1}^q[\dots]\prod_{j=1}^r[\dots]\prod_{j=1}^s[\dots]
 
 - We use Wooldridge's `wage1` data and consider two variables, one numeric (`lwage`) and one ordered (`numdep`)
 
-- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is their number of dependents $\{0,1,\dots,6\}$
+- `lwage` is the logarithm of an individual's average hourly earnings, and `numdep` is their number of dependents
 
 - The number of observations in each *cell* is tabulated in @tbl-wage1mixedtable
 
