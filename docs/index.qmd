@@ -623,6 +623,18 @@ scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
 - Let's start with $X\in\mathbb{R}^1$ (i.e., one numeric predictor)
   
 - We aim to estimate the unknown regression model $y=g(x)+\varepsilon$ without assuming that, e.g., $g(x)=\beta_0+\beta_1x$
+
+::: { .notes }
+
+- After "We aim", mention the following:
+
+- People often use the same simple model for different datasets
+
+- Is it realistic to assume $\int y\frac{f(y,x)}{f(x)}\,dy=\beta_0+\beta_1x$ for *every* dataset?
+
+- Think of just the denominator, $f(x)$ - the *same* for all data?
+
+:::
   
 ## Nonparametric Regression
 
@@ -661,6 +673,14 @@ we replace $K(\cdot)$ with $K_\gamma(X_i,x)$
   \begin{equation}
   y=\hat g(x)+\hat\epsilon
   \end{equation}
+  
+::: { .notes }
+
+- Point out that $\sum_{i=1}^n Y_i W_i(x)$ is simply a *weighted average* of $Y_i$ where the weights are *local* (i.e., local to $x$)
+
+- So the weights change with $x$
+
+:::
   
 ## Simulated Data Illustration
 

@@ -8,7 +8,7 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.324">
+  <meta name="generator" content="quarto-1.3.326">
 
   <meta name="author" content="Jeffrey S. Racine">
   <title>Nonparametric Workshop</title>
@@ -1085,6 +1085,24 @@ g(x)=\int y\frac{f(y,x)}{f(x)}\,dy=\frac{m(x)}{f(x)}
 <li class="fragment"><p>Let’s start with <span class="math inline">\(X\in\mathbb{R}^1\)</span> (i.e., one numeric predictor)</p></li>
 <li class="fragment"><p>We aim to estimate the unknown regression model <span class="math inline">\(y=g(x)+\varepsilon\)</span> without assuming that, e.g., <span class="math inline">\(g(x)=\beta_0+\beta_1x\)</span></p></li>
 </ul>
+<aside class="notes">
+<ul>
+<li><p>After “We aim”, mention the following:</p></li>
+<li><p>People often use the same simple model for different datasets</p></li>
+<li><p>Is it realistic to assume <span class="math inline">\(\int y\frac{f(y,x)}{f(x)}\,dy=\beta_0+\beta_1x\)</span> for <em>every</em> dataset?</p></li>
+<li><p>Think of just the denominator, <span class="math inline">\(f(x)\)</span> - the <em>same</em> for all data?</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="nonparametric-regression-2" class="slide level2 center">
 <h2>Nonparametric Regression</h2>
@@ -1118,6 +1136,22 @@ g(x)=\int y\frac{f(y,x)}{f(x)}\,dy=\frac{m(x)}{f(x)}
 y=\hat g(x)+\hat\epsilon
 \end{equation}\]</span></p></li>
 </ul>
+<aside class="notes">
+<ul>
+<li><p>Point out that <span class="math inline">\(\sum_{i=1}^n Y_i W_i(x)\)</span> is simply a <em>weighted average</em> of <span class="math inline">\(Y_i\)</span> where the weights are <em>local</em> (i.e., local to <span class="math inline">\(x\)</span>)</p></li>
+<li><p>So the weights change with <span class="math inline">\(x\)</span></p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="simulated-data-illustration" class="slide level2 center">
 <h2>Simulated Data Illustration</h2>
@@ -1526,7 +1560,7 @@ Racine, Jeffrey S. 2012. <span>“RStudio: A Platform-Independent <span>IDE</spa
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
-'multiplex': {"secret":null,"id":"7a3f668afdf00b77","url":"https://reveal-multiplex.glitch.me/"},
+'multiplex': {"secret":null,"id":"170f20a10c6068be","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
