@@ -1,6 +1,6 @@
 # RBworkshop
 
-This repository contains scripts and slides for the *Nonparametric Workshop in R* to be held in Riobamba, Ecuador, April 17, 2023
+This repository contains scripts and slides for the *Nonparametric Workshop in R* to be held in Riobamba, Ecuador, April 19, 2023
 
 
 This site can be accessed via <https://jeffreyracine.github.io/RBworkshop>
