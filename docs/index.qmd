@@ -98,7 +98,7 @@ Encourage participants to print/save a PDF copy of the slides as there is no gua
 
 # Welcome!
 
-- The website with install info for R, RStudio, and TeX is
+- The website with install info for R, RStudio, and $\rm\TeX$ is
 
   <https://jeffreyracine.github.io/RBworkshop>
 
@@ -882,7 +882,7 @@ If `df` had multiple rows we would get a prediction for each row (i.e., a vector
 
 ## A Sub-Optimal Workflow
 
-- The old way of doing research is to run your analyses using R, then to manually copy figures and tables into a word processor (e.g., MS Word) or typesetter (e.g., TeX) 
+- The old way of doing research is to run your analyses using R, then to manually copy figures and tables into a word processor (e.g., MS Word) or typesetter (e.g., $\rm\TeX$) 
 
 - So you end up maintaining separate code, figures, and narrative files and being their go-between coordinator
 
