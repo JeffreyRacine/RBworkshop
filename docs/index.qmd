@@ -1,6 +1,6 @@
 ---
 title: Nonparametric Workshop
-date: 4/17/2023
+date: 4/19/2023
 date-format: full
 subtitle: Riobamba, Ecuador
 author: Jeffrey S. Racine
