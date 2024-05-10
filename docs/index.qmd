@@ -1,8 +1,8 @@
 ---
 title: Nonparametric Workshop
-date: 4/19/2023
+date: 5/19/2024
 date-format: full
-subtitle: Riobamba, Ecuador
+subtitle: Veracruz, Mexico
 author: Jeffrey S. Racine
 institute: McMaster University
 format:
@@ -74,7 +74,7 @@ library(np)
 
 ::: {.nonincremental}
 
-- Link to slides - <a href="https://jeffreyracine.github.io/RBworkshop">jeffreyracine.github.io/RBworkshop</a> (case sensitive) (<a href="https://jeffreyracine-github-io.translate.goog/RBworkshop/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Google Translate</a>)
+- Link to slides - <a href="https://jeffreyracine.github.io/UVworkshop">jeffreyracine.github.io/UVworkshop</a> (case sensitive) (<a href="https://jeffreyracine-github-io.translate.goog/UVworkshop/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp#/title-slide">Google Translate</a>)
 
 - View **full screen** by pressing the F key (press the Esc key to revert)
 
@@ -100,11 +100,11 @@ Encourage participants to print/save a PDF copy of the slides as there is no gua
 
 - The website with install info for R, RStudio, and $\rm\TeX$ is
 
-  <https://jeffreyracine.github.io/RBworkshop>
+  <https://jeffreyracine.github.io/UVworkshop>
 
 - The GitHub repository with example code is
 
-  <https://github.com/JeffreyRacine/RBworkshop>
+  <https://github.com/JeffreyRacine/UVworkshop>
 
 - No seas tímido, siéntete libre de hacer preguntas
 

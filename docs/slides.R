@@ -105,6 +105,62 @@ phat <- npudens(~income)
 plot(phat,plot.errors.method="bootstrap")
 
 
+#| label: tbl-wage1mixedtable
+#| tbl-cap: Counts of number of dependants present in 526 households by cell
+library(np)
+library(plot3D)
+data(wage1)
+knitr::kable(with(wage1,t(data.frame(numdep=sort(unique(numdep)),counts=as.numeric(table(numdep))))),
+             booktabs=TRUE,
+             linesep="")
+
+
+#| echo: true
+#| eval: false
+## library(np)
+## library(plot3D)
+## data(wage1)
+## bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
+## numdep.seq <- with(wage1,sort(unique(numdep)))
+## lwage.seq <- with(wage1,seq(min(lwage),max(lwage),length=50))
+## wage1.eval <- expand.grid(numdep=ordered(numdep.seq),lwage=lwage.seq)
+## fhat <- fitted(npudens(bws=bw,newdata=wage1.eval))
+## ## Hack since scatter3D converts ordered 0-6 to numeric 1-7
+## scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
+##           ylab="Log-Wage",
+##           xlab="Number of Dependants",
+##           zlab="Joint Density",
+##           ticktype="detailed",
+##           angle=15,
+##           box=TRUE,
+##           type="h",
+##           grid=TRUE,
+##           col="blue",
+##           colkey=FALSE)
+
+
+#| label: fig-wage1mixeddensity
+#| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered)
+data(wage1)
+bw <- npudensbw(~lwage+ordered(numdep),data=wage1)
+numdep.seq <- with(wage1,sort(unique(numdep)))
+lwage.seq <- with(wage1,seq(min(lwage),max(lwage),length=50))
+wage1.eval <- expand.grid(numdep=ordered(numdep.seq),lwage=lwage.seq)
+fhat <- fitted(npudens(bws=bw,newdata=wage1.eval))
+## Hack since scatter3D converts ordered 0-6 to numeric 1-7
+scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
+          ylab="Log-Wage",
+          xlab="Number of Dependants",
+          zlab="Joint Density",
+          ticktype="detailed",
+          angle=15,
+          box=TRUE,
+          type="h",
+          grid=TRUE,
+          col="blue",
+          colkey=FALSE)
+
+
 #| echo: true
 library(np)
 set.seed(42)

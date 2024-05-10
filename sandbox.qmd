@@ -4,7 +4,7 @@ title-block-banner: true
 author: "Insert Your Name Here"
 format: html
 editor: source
-bibliography: riobamba.bib
+bibliography: veracruz.bib
 ---
 
 ```{r global_options, include=FALSE, cache=FALSE}

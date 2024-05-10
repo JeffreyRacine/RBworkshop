@@ -6,7 +6,7 @@ format: pdf
 execute:
   echo: false
 editor: source
-bibliography: riobamba.bib
+bibliography: veracruz.bib
 ---
 
 ```{r}

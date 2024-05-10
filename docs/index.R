@@ -1,7 +1,9 @@
+## ----libraries----------------------------------------------------------------
 #| include: false
 library(np)
 
 
+## ----datatype-----------------------------------------------------------------
 #| echo: true
 #| eval: false
 ## ## Generate some data: sex (unordered categorical), income (ordered categorical),
@@ -32,6 +34,7 @@ library(np)
 ## levels(x)
 
 
+## ----parnpeval----------------------------------------------------------------
 #| eval: true
 #| echo: true
 ## Let's simulate a random numeric sample from the normal distribution
@@ -46,33 +49,34 @@ x <- sort(x)
 plot(x,dnorm(x,mean=mean(x),sd=sd(x)),type="l",ylab="Parametric Density Estimate",xlab="X")
 
 
-
+## ----shapiro------------------------------------------------------------------
 pander::pander(shapiro.test(x))
 
 
-
+## ----shapiroeruptions---------------------------------------------------------
 data(faithful)
 with(faithful,pander::pander(shapiro.test(eruptions)))
 
 
-
+## ----densityeruptions---------------------------------------------------------
 plot(density(faithful$eruptions),main="")
 rug(faithful$eruptions)
 
 
-
+## ----densityeruptionscomp-----------------------------------------------------
 plot(density(faithful$eruptions),main="")
 with(faithful,lines(density(eruptions)$x,dnorm(density(eruptions)$x,mean=mean(eruptions),sd=sd(eruptions)),col=2,lty=2))
 rug(faithful$eruptions)
 legend("topleft",c("Nonparametric","Parametric"),lty=c(1,2),col=c(1,2),bty="n")
 
 
-
+## ----histdensityeruptions-----------------------------------------------------
 hist(faithful$eruptions,prob=TRUE,main="",xlab="Eruptions",breaks=20,xlim=c(1.25,5.5))
 with(faithful,lines(density(eruptions)$x,fitted(npudens(tdat=eruptions,edat=density(eruptions)$x))))
 rug(faithful$eruptions)
 
 
+## ----npudenseruptions---------------------------------------------------------
 #| echo: true
 library(np)
 data(faithful)
@@ -80,6 +84,7 @@ fhat <- npudens(~eruptions,data=faithful)
 plot(fhat,neval=250,plot.errors.method="bootstrap")
 
 
+## ----npudenseruptionswaiting--------------------------------------------------
 #| echo: true
 library(np)
 data(faithful)
@@ -87,6 +92,7 @@ fhat <- npudens(~eruptions+waiting,data=faithful)
 plot(fhat,theta=330,xtrim=-0.05,neval=75,view="fixed",main="")
 
 
+## ----npudensfactor------------------------------------------------------------
 #| echo: true
 n <- 250
 set.seed(42)
@@ -96,6 +102,7 @@ phat <- npudens(~sex)
 plot(phat,plot.errors.method="bootstrap")
 
 
+## ----npudensordered-----------------------------------------------------------
 #| echo: true
 n <- 250
 set.seed(42)
@@ -105,6 +112,7 @@ phat <- npudens(~income)
 plot(phat,plot.errors.method="bootstrap")
 
 
+## ----wage1mixedtable----------------------------------------------------------
 #| label: tbl-wage1mixedtable
 #| tbl-cap: Counts of number of dependants present in 526 households by cell
 library(np)
@@ -115,6 +123,7 @@ knitr::kable(with(wage1,t(data.frame(numdep=sort(unique(numdep)),counts=as.numer
              linesep="")
 
 
+## ----wage1mixeddensitycode----------------------------------------------------
 #| echo: true
 #| eval: false
 ## library(np)
@@ -139,6 +148,7 @@ knitr::kable(with(wage1,t(data.frame(numdep=sort(unique(numdep)),counts=as.numer
 ##           colkey=FALSE)
 
 
+## ----wage1mixeddensity--------------------------------------------------------
 #| label: fig-wage1mixeddensity
 #| fig-cap: Mixed-data bivariate kernel density estimate for the joint PDF of lwage (numeric) and numdeps (ordered)
 data(wage1)
@@ -161,6 +171,7 @@ scatter3D(as.numeric(wage1.eval[,1])-1,wage1.eval[,2],fhat,
           colkey=FALSE)
 
 
+## ----npregcos-----------------------------------------------------------------
 #| echo: true
 library(np)
 set.seed(42)
@@ -176,10 +187,11 @@ abline(ghat.ols <- lm(y~x),col=3)
 legend("top",c("DGP","Kernel","OLS"),col=1:3,lty=1,bty="n")
 
 
-
+## ----cosolssummary------------------------------------------------------------
 pander::pander(summary(ghat.ols))
 
 
+## ----cosgradient--------------------------------------------------------------
 #| echo: true
 plot(ghat,gradients=TRUE,neval=250)
 lines(x,-2*pi*sin(2*pi*x),col=2)
@@ -187,6 +199,7 @@ abline(h=coef(ghat.ols)[2],col=3)
 legend("topleft",c("Kernel ME","DGP ME","Linear ME"),col=1:3,lty=1,bty="n")
 
 
+## ----wage1summary-------------------------------------------------------------
 #| echo: true
 library(np)
 data(wage1)
@@ -194,6 +207,7 @@ ghat <- npreg(lwage ~ female + married + educ + exper + tenure, data=wage1, regt
 summary(ghat)
 
 
+## ----wage1plot----------------------------------------------------------------
 #| echo: true
 ## We run out of graph axis dimensions with > 2 predictors, so it is common to
 ## construct partial plots that plot the fitted model versus each predictor
@@ -203,20 +217,24 @@ par(mfrow=c(2,3))
 plot(ghat,plot.errors.method="bootstrap")
 
 
+## ----wage1gradientplot--------------------------------------------------------
 #| echo: true
 par(mfrow=c(2,3))
 plot(ghat,gradients=TRUE,plot.errors.method="bootstrap")
 
 
+## ----wage1sigtestols----------------------------------------------------------
 #| echo: true
 ghat.ols <- lm(lwage ~ female + married + educ + exper + tenure, data=wage1)
 summary(ghat.ols)
 
 
+## ----wage1sigtestnp-----------------------------------------------------------
 #| echo: true
 npsigtest(ghat)
 
 
+## ----wage1preddf--------------------------------------------------------------
 #| echo: true
 attach(wage1)
 df <- data.frame(female = factor("Male", levels=levels(female)),
